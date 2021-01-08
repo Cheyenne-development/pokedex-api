@@ -47,7 +47,7 @@ app.get('/pokemon', function handleGetPokemon(req, res) {
   // filter our pokemon by type if type query param is present
   if (req.query.type) {
     response = response.filter(pokemon =>
-      pokemon.type.toLowerCase().includes(req.query.type.toLowerCase()),
+      pokemon.type.toLowerCase().includes(req.query.type.toLowerCase())
     )
   }
 
