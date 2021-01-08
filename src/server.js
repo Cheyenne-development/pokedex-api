@@ -4,7 +4,7 @@ const express = require('express');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const cors = require('cors');
-const POKEDEX = require('./pokedex.json')
+const POKEDEX = require('../pokedex.json')
 
 const app = express();
 
