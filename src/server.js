@@ -23,6 +23,8 @@ app.use(function validateBearerToken(req, res, next) {
        next()
      });
 
+    
+
 app.get('/types', handleGetTypes);
 
 
@@ -35,9 +37,10 @@ function handleGetTypes(req, res) {
 
 app.get('/pokemon', function handleGetPokemon(req, res) {
     let response = POKEDEX.pokemon;
+    const { type, name } = req.query;
   
  // filter our pokemon by name if name query param is present
- if (req.query.name) {
+ if (name) {
     response = response.filter(pokemon =>
       // case insensitive searching
       pokemon.name.toLowerCase().includes(req.query.name.toLowerCase())
@@ -45,10 +48,12 @@ app.get('/pokemon', function handleGetPokemon(req, res) {
   }
 
   // filter our pokemon by type if type query param is present
-  if (req.query.type) {
+  if (type) {
+    const filterType = type.charAt(0).toUpperCase() + type.toLowerCase().slice(1);
+  console.log(filterType)
     response = response.filter(pokemon =>
-      pokemon.type.includes(req.query.type)
-    )
+      pokemon.type.includes(filterType))
+          
   }
 
   res.json(response)
